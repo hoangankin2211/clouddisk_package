@@ -20,13 +20,8 @@ class HomeScreen extends StatelessWidget {
           onGenerateRoute: (settings) {
             return MaterialPageRoute(
               settings: settings,
-              builder: (context) => BlocProvider(
-                create: (context) => ItemBloc(),
-                child: const ListItem(
-                  routePath: '../',
-                  folderId: "/",
-                ),
-              ),
+              builder: (context) =>
+                  const ListItem(routePath: '../', folderId: "/"),
             );
           },
         ),

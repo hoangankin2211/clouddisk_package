@@ -6,7 +6,6 @@ import 'package:clouddisk/features/home/view/home_screen.dart';
 import 'package:clouddisk/utils/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class MyCloudDiskApp extends StatefulWidget {
   const MyCloudDiskApp({
@@ -73,6 +72,7 @@ class _AppState extends State<App> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      navigatorKey: _navigatorKey,
       title: 'CloudDisk',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -98,40 +98,39 @@ class _AppState extends State<App> {
           ),
         ),
       ),
+      routes: {
+        "/home_screen": (context) => const HomeScreen(),
+        "/loaing_screen": (context) =>
+            const Material(child: Center(child: CircularProgressIndicator())),
+        "/failure_screen": (context) => const Material(
+              type: MaterialType.card,
+              child: Padding(
+                padding: EdgeInsets.symmetric(horizontal: 10),
+                child: Center(
+                  child: Text(
+                    "Unauthenticated !!! Don't have data about use \nPlease login to groupware first",
+                    style: TextStyle(fontSize: 30, color: Colors.red),
+                  ),
+                ),
+              ),
+            ),
+        "/splash_screen": (context) => const SplashScreen()
+      },
       builder: (context, child) {
         return BlocListener<AuthBloc, AuthState>(
           listener: (context, state) {
             if (state.status == AuthStatus.authenticated) {
-              _navigator.pushReplacement(
-                  MaterialPageRoute(builder: (context) => const HomeScreen()));
+              _navigator.pushReplacementNamed("/home_screen");
             } else if (state.status == AuthStatus.unknown) {
-              _navigator.pushReplacement(MaterialPageRoute(
-                  builder: (context) => const Material(
-                      child: Center(child: CircularProgressIndicator()))));
+              _navigator.pushReplacementNamed("/loading_screen");
             } else {
-              _navigator.pushReplacement(
-                MaterialPageRoute(
-                  builder: (context) => const Material(
-                    child: Center(
-                        child: Text(
-                      "Unauthenticated !!! Please login to groupware first",
-                      style: TextStyle(fontSize: 30, color: Colors.red),
-                    )),
-                  ),
-                ),
-              );
+              _navigator.pushReplacementNamed("/failure_screen");
             }
           },
           child: child,
         );
       },
-      navigatorKey: _navigatorKey,
-      onGenerateRoute: (settings) {
-        return MaterialPageRoute(
-            builder: (context) => const SplashScreen(),
-            settings:
-                const RouteSettings(name: "/cloudisk_splash", arguments: {}));
-      },
+      initialRoute: "/splash_screen",
     );
   }
 }
