@@ -1,0 +1,160 @@
+// import 'package:flutter/material.dart';
+// import '../model/item.dart';
+
+// class DefaultIcon {
+//   static final List<Folder> homeFolder = [
+//     Folder(
+//       "",
+//       'My',
+//       100,
+//       DateTime.now(),
+//       Icons.folder_rounded,
+//       "Folder",
+//       fakeSubFileData,
+//       color: Colors.blue,
+//     ),
+//     Folder(
+//         "",
+//         'CloudFolder',
+//         100,
+//         DateTime.now(),
+//         Icons.cloud_outlined,
+//         "Folder",
+//         color: const Color.fromARGB(255, 53, 141, 56),
+//         fakeSubFileData),
+//     Folder(
+//       "",
+//       'Company',
+//       100,
+//       DateTime.now(),
+//       Icons.folder_rounded,
+//       "Folder",
+//       color: Colors.orange,
+//       fakeSubFileData,
+//     ),
+//     Folder(
+//         "",
+//         'Shared',
+//         100,
+//         DateTime.now(),
+//         Icons.share,
+//         "Folder",
+//         color: Colors.purple,
+//         fakeSubFileData),
+//     Folder(
+//         "",
+//         'Favourite',
+//         100,
+//         DateTime.now(),
+//         Icons.star,
+//         "Folder",
+//         color: const Color.fromARGB(255, 218, 81, 127),
+//         fakeSubFileData),
+//     Folder(
+//         "",
+//         'Notification',
+//         100,
+//         DateTime.now(),
+//         Icons.notifications,
+//         "Folder",
+//         color: Colors.green,
+//         fakeSubFileData),
+//     Folder(
+//         "",
+//         'Guest Folder',
+//         100,
+//         DateTime.now(),
+//         Icons.folder_rounded,
+//         "Folder",
+//         color: const Color.fromARGB(255, 20, 83, 22),
+//         fakeSubFileData),
+//   ];
+
+//   static final List<Item> fakeSubFileData = [
+//     // Folder(
+//     //   "",
+//     //   'Some Kind of Folder',
+//     //   100,
+//     //   DateTime.now(),
+//     //   Icons.folder_rounded,
+//     //   "Folder",
+//     //   color: const Color.fromARGB(255, 20, 83, 22),
+//     //   // fakeListFile2,
+//     // ),
+//     // Item(
+//     //     "1",
+//     //     "abacd.txt",
+//     //     100,
+//     //     subtitle: '360KB 2022-11-22',
+//     //     DateTime.now(),
+//     //     Icons.picture_as_pdf,
+//     //     "File",
+//     //   ),
+//     //   Item(
+//     //     "2",
+//     //     "abacd.txt",
+//     //     100,
+//     //     DateTime.now(),
+//     //     Icons.video_camera_back,
+//     //     "File",
+//     //     subtitle: '360KB 2022-11-22',
+//     //   ),
+//     //   Item(
+//     //     "3",
+//     //     "abacd.txt",
+//     //     100,
+//     //     DateTime.now(),
+//     //     Icons.textsms_rounded,
+//     //     "File",
+//     //     subtitle: '360KB 2022-11-22',
+//     //   ),
+//     //   Item(
+//     //     "4",
+//     //     "abacd.txt",
+//     //     100,
+//     //     DateTime.now(),
+//     //     Icons.edit_document,
+//     //     "File",
+//     //     subtitle: '360KB 2022-11-22',
+//     //   ),
+//     //   Item(
+//     //     "5",
+//     //     "abacd.txt",
+//     //     100,
+//     //     DateTime.now(),
+//     //     Icons.chrome_reader_mode,
+//     //     "File",
+//     //     subtitle: '360KB 2022-11-22',
+//     //   )
+//     // ];
+
+//     // static final fakeListFile2 = [
+//     //   Item(
+//     //     "6",
+//     //     "abacd.txt",
+//     //     100,
+//     //     DateTime.now(),
+//     //     Icons.textsms_rounded,
+//     //     "File",
+//     //     subtitle: '360KB 2022-11-22',
+//     //   ),
+//     //   Item(
+//     //     "7",
+//     //     "abacd.txt",
+//     //     100,
+//     //     DateTime.now(),
+//     //     Icons.edit_document,
+//     //     "File",
+//     //     subtitle: '360KB 2022-11-22',
+//     //   ),
+//     //   Item(
+//     //     "8",
+//     //     "abacd.txt",
+//     //     100,
+//     //     DateTime.now(),
+//     //     Icons.chrome_reader_mode,
+//     //     "File",
+//     //     subtitle: '360KB 2022-11-22',
+//     //   )
+//   ];
+// }
