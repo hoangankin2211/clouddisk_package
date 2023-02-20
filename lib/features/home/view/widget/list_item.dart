@@ -69,7 +69,6 @@ class _ListItemState extends State<ListItem> {
   void didChangeDependencies() {
     _loadItem();
     locale = context.read<LocaleBloc>().state.locale;
-    print("locale: ${locale.languageCode}");
     super.didChangeDependencies();
   }
 
