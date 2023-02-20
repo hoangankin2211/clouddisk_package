@@ -32,6 +32,7 @@ class _ListItemState extends State<ListItem> {
   int start = 0;
   List<Item> currentList = [];
   final _scrollController = ScrollController();
+  late final Locale locale;
 
   @override
   void initState() {
@@ -67,6 +68,8 @@ class _ListItemState extends State<ListItem> {
   @override
   void didChangeDependencies() {
     _loadItem();
+    locale = context.read<LocaleBloc>().state.locale;
+
     super.didChangeDependencies();
   }
 
@@ -88,12 +91,12 @@ class _ListItemState extends State<ListItem> {
         .add(SortItemEvent(widget.folderId, order, sortType));
   }
 
-  void _showSortDialog(BuildContext appContext) {
+  void _showSortDialog(BuildContext context, Locale locale) {
     showDialog(
-      context: appContext,
+      context: context,
       builder: (context) => Localizations.override(
-          context: appContext,
-          locale: appContext.read<LocaleBloc>().state.locale,
+          context: context,
+          locale: locale,
           child: SortDialog(onPressedSaveButton: onPressedSaveButton)),
     );
   }
@@ -168,7 +171,7 @@ class _ListItemState extends State<ListItem> {
             ),
       actions: [
         IconButton(
-          onPressed: () => showGetLinkDialog(appContext, stateListFile),
+          onPressed: () => showGetLinkDialog(appContext, stateListFile, locale),
           icon: const Icon(
             Icons.send_outlined,
             color: Colors.white,
@@ -180,7 +183,7 @@ class _ListItemState extends State<ListItem> {
             itemBuilder: (BuildContext context) => [
               PopupMenuItem<String>(
                 height: 10,
-                onTap: () => _showSortDialog(context),
+                onTap: () => _showSortDialog(context, locale),
                 value: "Sort",
                 child: Text(
                     AppLocalization.of(context)?.translate("sort") ?? "NULL"),
@@ -205,11 +208,11 @@ class _ListItemState extends State<ListItem> {
   }
 
   Future<dynamic> showGetLinkDialog(
-      BuildContext appContext, List<Item> stateListFile) {
+      BuildContext context, List<Item> stateListFile, Locale locale) {
     return showDialog(
       context: context,
       builder: (context) => Localizations.override(
-          locale: context.read<LocaleBloc>().state.locale,
+          locale: locale,
           context: context,
           child: GetlinkDialog(items: stateListFile)),
     );
