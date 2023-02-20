@@ -88,12 +88,12 @@ class _ListItemState extends State<ListItem> {
         .add(SortItemEvent(widget.folderId, order, sortType));
   }
 
-  void _showSortDialog(BuildContext context) {
+  void _showSortDialog(BuildContext appContext) {
     showDialog(
-      context: context,
+      context: appContext,
       builder: (context) => Localizations.override(
-          context: context,
-          locale: context.read<LocaleBloc>().state.locale,
+          context: appContext,
+          locale: appContext.read<LocaleBloc>().state.locale,
           child: SortDialog(onPressedSaveButton: onPressedSaveButton)),
     );
   }
@@ -147,7 +147,7 @@ class _ListItemState extends State<ListItem> {
     );
   }
 
-  AppBar myAppBar(BuildContext context, List<Item> stateListFile) {
+  AppBar myAppBar(BuildContext appContext, List<Item> stateListFile) {
     return AppBar(
       backgroundColor: const Color.fromARGB(255, 68, 167, 162),
       bottom: widget.routePath == "../"
@@ -169,10 +169,10 @@ class _ListItemState extends State<ListItem> {
       actions: [
         IconButton(
           onPressed: () => showDialog(
-            context: context,
-            builder: (context) => Localizations.override(
-                locale: context.read<LocaleBloc>().state.locale,
-                context: context,
+            context: appContext,
+            builder: (appContext) => Localizations.override(
+                locale: appContext.read<LocaleBloc>().state.locale,
+                context: appContext,
                 child: GetlinkDialog(items: stateListFile)),
           ),
           icon: const Icon(
