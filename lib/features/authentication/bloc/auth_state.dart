@@ -12,7 +12,7 @@ class AuthState {
   final String? hmail_key;
   final AuthStatus status;
 
-  AuthState.init({required String hmail_key, required String session})
+  AuthState.init({required String? hmail_key, required String? session})
       : this(
             hmail_key: hmail_key, session: session, status: AuthStatus.unknown);
 
