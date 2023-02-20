@@ -39,6 +39,7 @@ class _MyCloudDiskAppState extends State<MyCloudDiskApp> {
   @override
   void didChangeDependencies() async {
     super.didChangeDependencies();
+    print("ModalRoute: ${(ModalRoute.of(context)?.settings.arguments as Map)}");
     hmail_key =
         (ModalRoute.of(context)?.settings.arguments as Map)["hmail_key"];
     session = (ModalRoute.of(context)?.settings.arguments as Map)["session"];
@@ -59,7 +60,7 @@ class _MyCloudDiskAppState extends State<MyCloudDiskApp> {
             create: (context) =>
                 ThemeBloc(mode: themeMode ?? ThemeMode.system)),
         BlocProvider(
-            create: (_) => LocaleBloc(languageCode: languageCode ?? "en")),
+            create: (_) => LocaleBloc(languageCode: languageCode ?? "ko")),
       ],
       child: const App(),
     );
