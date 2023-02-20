@@ -20,5 +20,9 @@
   "login_hanbiro": "Login Hanbiro",
   "filed_required": "Field required",
   "login": "Login",
-  "error": "Error"
+  "error": "Error",
+  "no_data": "No Data",
+  "can_not_open_file_in_this_application": "Can not open file in this application",
+  "sort_type": "Sort Type",
+  "order": "Order"
 }

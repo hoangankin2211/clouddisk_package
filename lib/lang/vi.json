@@ -20,5 +20,9 @@
   "username": "Tên đăng nhập",
   "login_hanbiro": "Đăng nhập Hanbiro",
   "filed_required": "Yêu cầu điền đầy đủ thông tin",
-  "login": "Đăng nhập"
+  "login": "Đăng nhập",
+  "no_data": "Không có dữ liệu",
+  "can_not_open_file_in_this_application": "Không thể mở tệp trong ứng dụng này",
+  "sort_type": "Loại sắp xếp",
+  "order": "Thứ tự"
 }

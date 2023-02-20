@@ -1,3 +1,4 @@
+import 'package:clouddisk/localization/app_localization.dart';
 import 'package:clouddisk/utils/shared_preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,7 +55,8 @@ class _SortDialogState extends State<SortDialog> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      "Sort Type",
+                      AppLocalization.of(context)?.translate('sort_type') ??
+                          "Sort Type",
                       style: Theme.of(context).textTheme.titleMedium,
                     ),
                     InkWell(
@@ -83,7 +85,8 @@ class _SortDialogState extends State<SortDialog> {
                             },
                           ),
                           Text(
-                            "Size",
+                            AppLocalization.of(context)?.translate("size") ??
+                                "Size",
                             style: Theme.of(context).textTheme.displaySmall,
                           ),
                         ],
@@ -101,7 +104,9 @@ class _SortDialogState extends State<SortDialog> {
                                 }
                               }),
                           Text(
-                            "Filename",
+                            AppLocalization.of(context)
+                                    ?.translate("filename") ??
+                                "Filename",
                             style: Theme.of(context).textTheme.displaySmall,
                           ),
                         ],
@@ -119,7 +124,8 @@ class _SortDialogState extends State<SortDialog> {
                                 }
                               }),
                           Text(
-                            "Date",
+                            AppLocalization.of(context)?.translate("date") ??
+                                "Date",
                             style: Theme.of(context).textTheme.displaySmall,
                           ),
                         ],
@@ -128,7 +134,7 @@ class _SortDialogState extends State<SortDialog> {
                   ),
                 ),
                 Text(
-                  "Order",
+                  AppLocalization.of(context)?.translate('order') ?? "Order",
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
                 BlocBuilder<SelectOrderCubit, Order>(
@@ -148,7 +154,9 @@ class _SortDialogState extends State<SortDialog> {
                             },
                           ),
                           Text(
-                            "Ascending",
+                            AppLocalization.of(context)
+                                    ?.translate("ascending") ??
+                                "Ascending",
                             style: Theme.of(context).textTheme.displaySmall,
                           )
                         ],
@@ -166,7 +174,9 @@ class _SortDialogState extends State<SortDialog> {
                                 }
                               }),
                           Text(
-                            "Descending",
+                            AppLocalization.of(context)
+                                    ?.translate("descending") ??
+                                "Descending",
                             style: Theme.of(context).textTheme.displaySmall,
                           )
                         ],
@@ -190,7 +200,9 @@ class _SortDialogState extends State<SortDialog> {
                           Navigator.of(context).pop();
                         },
                         child: Text(
-                          "Save As Default",
+                          AppLocalization.of(context)
+                                  ?.translate("save_as_default") ??
+                              "Save As Default",
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                       ),
@@ -210,7 +222,8 @@ class _SortDialogState extends State<SortDialog> {
                           Navigator.of(context).pop();
                         },
                         child: Text(
-                          "Save",
+                          AppLocalization.of(context)?.translate("save") ??
+                              "Save",
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                       ),

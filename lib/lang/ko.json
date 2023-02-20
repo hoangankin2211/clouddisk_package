@@ -20,5 +20,9 @@
   "username": "사용자 이름",
   "login_hanbiro": "한비로 로그인",
   "filed_required": "필수 항목입니다",
-  "login": "로그인"
+  "login": "로그인",
+  "no_data": "데이터가 없습니다",
+  "can_not_open_file_in_this_application": "이 애플리케이션에서 파일을 열 수 없습니다",
+  "sort_type": "정렬 유형",
+  "order": "순서"
 }

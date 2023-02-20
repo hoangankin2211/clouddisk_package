@@ -1,4 +1,5 @@
 import 'package:clouddisk/features/home/view/widget/sort_dialog.dart';
+import 'package:clouddisk/localization/app_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
@@ -107,7 +108,8 @@ class _ListItemState extends State<ListItem> {
               if (state.listItems.isEmpty) {
                 return Center(
                   child: Text(
-                    "No Data",
+                    AppLocalization.of(context)?.translate("no_data") ??
+                        "No Data",
                     style: Theme.of(context)
                         .textTheme
                         .titleMedium!
@@ -129,7 +131,9 @@ class _ListItemState extends State<ListItem> {
             } else {
               return Center(
                 child: Text(
-                  "Can not open file in this application",
+                  AppLocalization.of(context)?.translate(
+                          "can_not_open_file_in_this_application") ??
+                      "Can not open file in this application",
                   style: Theme.of(context).textTheme.titleMedium,
                 ),
               );
@@ -178,7 +182,8 @@ class _ListItemState extends State<ListItem> {
                 height: 10,
                 onTap: () => _showSortDialog(context),
                 value: "Sort",
-                child: const Text("Sort"),
+                child: Text(
+                    AppLocalization.of(context)?.translate("sort") ?? "Sort"),
               ),
             ],
           ),
@@ -187,7 +192,7 @@ class _ListItemState extends State<ListItem> {
         text: TextSpan(
           style: Theme.of(context).textTheme.titleLarge,
           children: [
-            const TextSpan(text: "CloudDisk "),
+            const TextSpan(text: "CloudDisk"),
             if (stateListFile.isNotEmpty)
               TextSpan(
                 style: TextStyle(color: Colors.yellow[300], fontSize: 17),

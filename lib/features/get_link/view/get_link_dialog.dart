@@ -3,6 +3,7 @@ import 'dart:math';
 
 import 'package:clouddisk/clouddisk.dart';
 import 'package:clouddisk/constant/root_path.dart';
+import 'package:clouddisk/localization/app_localization.dart';
 import 'package:clouddisk/model/get_link_response.dart';
 import 'package:clouddisk/utils/shared_preferences.dart';
 import 'package:flutter/material.dart';
@@ -85,9 +86,11 @@ class _GetlinkDialogState extends State<GetlinkDialog> {
                                 return false;
                               });
                             },
-                            child: const Text(
-                              "Back to Hanbiro App",
-                              style: TextStyle(
+                            child: Text(
+                              AppLocalization.of(context)
+                                      ?.translate("back_to_hanbrio") ??
+                                  'Back to Hanbiro',
+                              style: const TextStyle(
                                 color: Colors.blue,
                                 fontSize: 20,
                                 fontWeight: FontWeight.w500,
@@ -106,11 +109,13 @@ class _GetlinkDialogState extends State<GetlinkDialog> {
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                "widget.folderName",
+                                "CloudDisk",
                                 style: Theme.of(context).textTheme.titleMedium,
                               ),
                               Text(
-                                "Expired Date (NOT less than current date)",
+                                AppLocalization.of(context)
+                                        ?.translate('expried_date') ??
+                                    "Expired Date (NOT less than current date)",
                                 style: Theme.of(context).textTheme.displaySmall,
                               ),
                               InkWell(
@@ -155,7 +160,9 @@ class _GetlinkDialogState extends State<GetlinkDialog> {
                                 ),
                               ),
                               Text(
-                                "Download count (greater than 0)",
+                                AppLocalization.of(context)
+                                        ?.translate("download_count") ??
+                                    "Download count (greater than 0)",
                                 style: Theme.of(context).textTheme.displaySmall,
                               ),
                               SizedBox(
@@ -172,7 +179,9 @@ class _GetlinkDialogState extends State<GetlinkDialog> {
                                   TextButton(
                                     onPressed: Navigator.of(context).pop,
                                     child: Text(
-                                      "CANCEL",
+                                      AppLocalization.of(context)
+                                              ?.translate("cancel") ??
+                                          "CANCEL",
                                       style: TextStyle(
                                         color: Colors.green[700],
                                         fontSize: 16,
@@ -194,7 +203,9 @@ class _GetlinkDialogState extends State<GetlinkDialog> {
                                             downCount: int.parse(
                                                 countController.text))),
                                     child: Text(
-                                      "OK",
+                                      AppLocalization.of(context)
+                                              ?.translate("ok") ??
+                                          "OK",
                                       style: TextStyle(
                                         color: Colors.green[700],
                                         fontSize: 16,
