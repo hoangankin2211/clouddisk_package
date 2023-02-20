@@ -183,7 +183,7 @@ class _ListItemState extends State<ListItem> {
                 onTap: () => _showSortDialog(context),
                 value: "Sort",
                 child: Text(
-                    AppLocalization.of(context)?.translate("sort") ?? "Sort"),
+                    AppLocalization.of(context)?.translate("sort") ?? "NULL"),
               ),
             ],
           ),
