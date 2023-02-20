@@ -168,13 +168,7 @@ class _ListItemState extends State<ListItem> {
             ),
       actions: [
         IconButton(
-          onPressed: () => showDialog(
-            context: appContext,
-            builder: (appContext) => Localizations.override(
-                locale: appContext.read<LocaleBloc>().state.locale,
-                context: appContext,
-                child: GetlinkDialog(items: stateListFile)),
-          ),
+          onPressed: () => showGetLinkDialog(appContext, stateListFile),
           icon: const Icon(
             Icons.send_outlined,
             color: Colors.white,
@@ -207,6 +201,17 @@ class _ListItemState extends State<ListItem> {
           ],
         ),
       ),
+    );
+  }
+
+  Future<dynamic> showGetLinkDialog(
+      BuildContext appContext, List<Item> stateListFile) {
+    return showDialog(
+      context: context,
+      builder: (context) => Localizations.override(
+          locale: context.read<LocaleBloc>().state.locale,
+          context: context,
+          child: GetlinkDialog(items: stateListFile)),
     );
   }
 }
