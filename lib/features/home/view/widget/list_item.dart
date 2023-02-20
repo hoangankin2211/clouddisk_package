@@ -94,7 +94,7 @@ class _ListItemState extends State<ListItem> {
   void _showSortDialog(Locale locale) {
     showDialog(
       context: context,
-      builder: (context) => Localizations.override(
+      builder: (appContext) => Localizations.override(
           context: context,
           locale: locale,
           child: SortDialog(onPressedSaveButton: onPressedSaveButton)),
@@ -210,10 +210,11 @@ class _ListItemState extends State<ListItem> {
   Future<dynamic> showGetLinkDialog(List<Item> stateListFile, Locale locale) {
     return showDialog(
       context: context,
-      builder: (context) => Localizations.override(
-          locale: locale,
-          context: context,
-          child: GetlinkDialog(items: stateListFile)),
+      builder: (appContext) => Localizations.override(
+        locale: locale,
+        context: context,
+        child: GetlinkDialog(items: stateListFile),
+      ),
     );
   }
 }
