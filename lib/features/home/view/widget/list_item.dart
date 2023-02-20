@@ -89,9 +89,10 @@ class _ListItemState extends State<ListItem> {
 
   void _showSortDialog(BuildContext context) {
     showDialog(
+      // useRootNavigator: true,
       context: context,
       builder: (context) =>
-          SortDialog(onPressedSaveButton: onPressedSaveButton),
+          Material(child: SortDialog(onPressedSaveButton: onPressedSaveButton)),
     );
   }
 

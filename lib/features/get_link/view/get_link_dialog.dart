@@ -115,7 +115,7 @@ class _GetlinkDialogState extends State<GetlinkDialog> {
                               Text(
                                 AppLocalization.of(context)
                                         ?.translate('expried_date') ??
-                                    "Expired Date (NOT less than current date)",
+                                    "NULL",
                                 style: Theme.of(context).textTheme.displaySmall,
                               ),
                               InkWell(
