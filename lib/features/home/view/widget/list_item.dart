@@ -8,6 +8,7 @@ import '../../../../constant/api_info.dart';
 import '../../../../model/item.dart';
 import '../../../../utils/shared_preferences.dart';
 import '../../../get_link/view/get_link_dialog.dart';
+import '../../../locale/bloc/locale_bloc.dart';
 import '../../bloc/cubit/select_file_cubit.dart';
 import '../../bloc/cubit/select_order_cubit.dart';
 import '../../bloc/cubit/select_sort_cubit.dart';
@@ -92,6 +93,7 @@ class _ListItemState extends State<ListItem> {
       context: context,
       builder: (context) => Localizations.override(
           context: context,
+          locale: context.read<LocaleBloc>().state.locale,
           child: SortDialog(onPressedSaveButton: onPressedSaveButton)),
     );
   }
@@ -169,7 +171,9 @@ class _ListItemState extends State<ListItem> {
           onPressed: () => showDialog(
             context: context,
             builder: (context) => Localizations.override(
-                context: context, child: GetlinkDialog(items: stateListFile)),
+                locale: context.read<LocaleBloc>().state.locale,
+                context: context,
+                child: GetlinkDialog(items: stateListFile)),
           ),
           icon: const Icon(
             Icons.send_outlined,
