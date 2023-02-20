@@ -69,7 +69,7 @@ class _ListItemState extends State<ListItem> {
   void didChangeDependencies() {
     _loadItem();
     locale = context.read<LocaleBloc>().state.locale;
-    print(locale.languageCode);
+    print("locale: ${locale.languageCode}");
     super.didChangeDependencies();
   }
 
@@ -91,7 +91,7 @@ class _ListItemState extends State<ListItem> {
         .add(SortItemEvent(widget.folderId, order, sortType));
   }
 
-  void _showSortDialog(BuildContext context, Locale locale) {
+  void _showSortDialog(Locale locale) {
     showDialog(
       context: context,
       builder: (context) => Localizations.override(
@@ -171,7 +171,7 @@ class _ListItemState extends State<ListItem> {
             ),
       actions: [
         IconButton(
-          onPressed: () => showGetLinkDialog(appContext, stateListFile, locale),
+          onPressed: () => showGetLinkDialog(stateListFile, locale),
           icon: const Icon(
             Icons.send_outlined,
             color: Colors.white,
@@ -183,7 +183,7 @@ class _ListItemState extends State<ListItem> {
             itemBuilder: (BuildContext context) => [
               PopupMenuItem<String>(
                 height: 10,
-                onTap: () => _showSortDialog(context, locale),
+                onTap: () => _showSortDialog(locale),
                 value: "Sort",
                 child: Text(
                     AppLocalization.of(context)?.translate("sort") ?? "NULL"),
@@ -207,8 +207,7 @@ class _ListItemState extends State<ListItem> {
     );
   }
 
-  Future<dynamic> showGetLinkDialog(
-      BuildContext context, List<Item> stateListFile, Locale locale) {
+  Future<dynamic> showGetLinkDialog(List<Item> stateListFile, Locale locale) {
     return showDialog(
       context: context,
       builder: (context) => Localizations.override(
