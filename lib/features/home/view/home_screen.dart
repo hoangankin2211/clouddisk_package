@@ -235,58 +235,54 @@ class _HomePageState extends State<HomePage> {
               builder: (context) => Localizations.override(
                 context: context,
                 locale: locale,
-                child: Dialog(
-                  elevation: 5,
-                  shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10)),
-                  alignment: Alignment.center,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Text(
-                        AppLocalization.of(context)
-                                ?.translate("back_to_hanbrio") ??
-                            "Back to Hanbiro ?",
-                        style: Theme.of(context)
-                            .textTheme
-                            .titleLarge!
-                            .copyWith(color: Colors.red[400]),
-                      ),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          TextButton(
-                            onPressed: () => Navigator.of(context).pop(),
-                            child: Text(
-                              AppLocalization.of(context)
-                                      ?.translate("cancel") ??
-                                  "Cancel",
-                              style: const TextStyle(
-                                color: Colors.red,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20, vertical: 30),
+                  child: Dialog(
+                    elevation: 5,
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(10)),
+                    alignment: Alignment.center,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceAround,
+                      children: [
+                        Text(
+                          AppLocalization.of(context)
+                                  ?.translate("back_to_hanbrio") ??
+                              "Back to Hanbiro ?",
+                          style: Theme.of(context)
+                              .textTheme
+                              .titleLarge!
+                              .copyWith(color: Colors.red[400]),
+                        ),
+                        Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            TextButton(
+                              onPressed: () => Navigator.of(context).pop(),
+                              child: Text(
+                                AppLocalization.of(context)
+                                        ?.translate("cancel") ??
+                                    "Cancel",
+                                style: Theme.of(context).textTheme.titleMedium,
                               ),
                             ),
-                          ),
-                          TextButton(
-                            onPressed: () => Navigator.of(context).popUntil(
-                              (route) => route.settings.name == RootPath.root,
-                            ),
-                            child: Text(
-                              AppLocalization.of(context)?.translate("ok") ??
-                                  "OK",
-                              style: const TextStyle(
-                                color: Colors.red,
-                                fontSize: 20,
-                                fontWeight: FontWeight.bold,
+                            TextButton(
+                              onPressed: () => Navigator.of(context).popUntil(
+                                (route) => route.settings.name == RootPath.root,
+                              ),
+                              child: Text(
+                                AppLocalization.of(context)?.translate("ok") ??
+                                    "OK",
+                                style: Theme.of(context).textTheme.titleMedium,
                               ),
                             ),
-                          ),
-                        ],
-                      )
-                    ],
+                          ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
