@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'package:clouddisk/clouddisk.dart';
+import 'package:clouddisk/constant/root_path.dart';
 import 'package:clouddisk/features/home/view/widget/custom_list_title.dart';
 import 'package:clouddisk/features/home/view/widget/folder_name_dialog.dart';
 import 'package:clouddisk/features/home/view/widget/list_item.dart';
@@ -226,7 +227,7 @@ class _HomePageState extends State<HomePage> {
       leading: IconButton(
         icon: const Icon(Icons.arrow_back_ios_new_outlined),
         onPressed: () {
-          if (routeName.length > 1) {
+          if (routeName.length > 2) {
             context.read<NavigatePageCubit>().pop();
           } else {
             showDialog(
@@ -270,7 +271,9 @@ class _HomePageState extends State<HomePage> {
                             ),
                           ),
                           TextButton(
-                            onPressed: () => Navigator.of(context).pop(),
+                            onPressed: () => Navigator.of(context).popUntil(
+                              (route) => route.settings.name == RootPath.root,
+                            ),
                             child: Text(
                               AppLocalization.of(context)?.translate("ok") ??
                                   "OK",
