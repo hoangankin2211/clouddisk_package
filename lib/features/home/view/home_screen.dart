@@ -226,7 +226,69 @@ class _HomePageState extends State<HomePage> {
       leading: IconButton(
         icon: const Icon(Icons.arrow_back_ios_new_outlined),
         onPressed: () {
-          context.read<NavigatePageCubit>().pop();
+          if (routeName.length > 1) {
+            context.read<NavigatePageCubit>().pop();
+          } else {
+            showDialog(
+              context: context,
+              builder: (context) => Localizations.override(
+                context: context,
+                locale: locale,
+                child: Dialog(
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10)),
+                  alignment: Alignment.center,
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Text(
+                        AppLocalization.of(context)
+                                ?.translate("back_to_hanbrio") ??
+                            "Back to Hanbiro ?",
+                        style: Theme.of(context)
+                            .textTheme
+                            .titleLarge!
+                            .copyWith(color: Colors.red[400]),
+                      ),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          TextButton(
+                            onPressed: () => Navigator.of(context).pop(),
+                            child: Text(
+                              AppLocalization.of(context)
+                                      ?.translate("cancel") ??
+                                  "Cancel",
+                              style: const TextStyle(
+                                color: Colors.red,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () => Navigator.of(context).pop(),
+                            child: Text(
+                              AppLocalization.of(context)?.translate("ok") ??
+                                  "OK",
+                              style: const TextStyle(
+                                color: Colors.red,
+                                fontSize: 20,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              ),
+            );
+          }
         },
       ),
       actions: [
@@ -452,7 +514,6 @@ class ListFolderTree extends StatelessWidget {
     return Navigator(
       key: HomeScreen.homepageNavigatorKey,
       onGenerateRoute: (settings) {
-        print(settings.name);
         Widget currentPage = ListItem(folderId: initRoute?.id ?? "/");
         if (settings.arguments != null) {
           var item =
