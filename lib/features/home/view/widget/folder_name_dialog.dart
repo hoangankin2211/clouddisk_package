@@ -28,6 +28,8 @@ class FolderNameDialog extends StatelessWidget {
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold)),
             const SizedBox(height: 5),
             TextField(
+              autocorrect: false,
+              autofocus: true,
               maxLines: 1,
               controller: controller,
               expands: false,

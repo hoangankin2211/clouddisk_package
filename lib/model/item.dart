@@ -33,6 +33,15 @@ class Item {
     );
   }
 
+  static Item empty = Item(
+    id: "/",
+    name: "..",
+    size: 0,
+    createDate: DateTime(2023),
+    icon: Icons.folder,
+    type: "dir",
+  );
+
   Map<String, dynamic> toMap() {
     return {
       "id": id,

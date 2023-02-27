@@ -1,5 +1,3 @@
-import '../../../model/item.dart';
-
 enum AuthStatus {
   authenticated,
   unauthenticated,

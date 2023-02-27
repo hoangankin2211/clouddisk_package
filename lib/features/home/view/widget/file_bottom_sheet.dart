@@ -1,3 +1,4 @@
+import 'package:clouddisk/localization/app_localization.dart';
 import 'package:flutter/material.dart';
 
 class FailBottomSheet extends StatelessWidget {
@@ -24,9 +25,9 @@ class FailBottomSheet extends StatelessWidget {
           ),
           TextButton(
             onPressed: () => Navigator.of(context).pop(),
-            child: const Text(
-              "OK",
-              style: TextStyle(
+            child: Text(
+              AppLocalization.of(context)?.translate("ok") ?? "OK",
+              style: const TextStyle(
                 color: Colors.red,
                 fontSize: 20,
                 fontWeight: FontWeight.bold,

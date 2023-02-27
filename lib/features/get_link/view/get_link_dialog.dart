@@ -1,13 +1,6 @@
-import 'dart:convert';
-import 'dart:math';
-
-import 'package:clouddisk/clouddisk.dart';
 import 'package:clouddisk/constant/root_path.dart';
 import 'package:clouddisk/localization/app_localization.dart';
-import 'package:clouddisk/model/get_link_response.dart';
-import 'package:clouddisk/utils/shared_preferences.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
@@ -80,7 +73,6 @@ class _GetlinkDialogState extends State<GetlinkDialog> {
                                 if (route.settings.name == RootPath.root) {
                                   (route.settings.arguments as Map)["result"] =
                                       state.linkResponse;
-
                                   return true;
                                 }
                                 return false;

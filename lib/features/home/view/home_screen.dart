@@ -3,6 +3,8 @@ import 'package:clouddisk/clouddisk.dart';
 import 'package:clouddisk/constant/root_path.dart';
 import 'package:clouddisk/features/home/view/widget/custom_list_title.dart';
 import 'package:clouddisk/features/home/view/widget/folder_name_dialog.dart';
+import 'package:clouddisk/features/home/view/widget/home_page_large_screen.dart';
+import 'package:clouddisk/features/home/view/widget/home_page_small_screen.dart';
 import 'package:clouddisk/features/home/view/widget/list_item.dart';
 import 'package:clouddisk/features/home/view/widget/sort_dialog.dart';
 import 'package:file_picker/file_picker.dart';
@@ -56,18 +58,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late Locale locale;
-  List<Item> routeName = [
-    Item(
-      id: "/",
-      name: "..",
-      size: 0,
-      createDate: DateTime(2023),
-      icon: Icons.folder,
-      type: "dir",
-    ),
-  ];
   late Stream<List<String>> streamFolder;
+
+  List<Item> routeName = [Item.empty];
   StreamController<List<String>> currentFolder = StreamController();
+
   @override
   void initState() {
     streamFolder = currentFolder.stream.asBroadcastStream();
@@ -429,74 +424,6 @@ class _HomePageState extends State<HomePage> {
         }
         return const SizedBox();
       },
-    );
-  }
-}
-
-class HomePageSmallScreen extends StatelessWidget {
-  const HomePageSmallScreen({
-    required this.streamFolder,
-    super.key,
-  });
-  final Stream<List<String>> streamFolder;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      children: [
-        const SizedBox(height: 10),
-        RoutePathControl(
-          streamFolder: streamFolder,
-        ),
-        const Expanded(
-          child: ListFolderTree(),
-        ),
-      ],
-    );
-  }
-}
-
-class HomePageLargeScreen extends StatelessWidget {
-  const HomePageLargeScreen({
-    super.key,
-    required this.streamFolder,
-    required this.isFolderEmpty,
-    required this.listItems,
-  });
-  final Stream<List<String>> streamFolder;
-  final bool isFolderEmpty;
-  final List<Item> listItems;
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10),
-      child: Row(
-        children: [
-          Expanded(
-            flex: 1,
-            child: CustomListTile(
-              onRefresh: () async {},
-              isFolderEmpty: isFolderEmpty,
-              listItems: listItems,
-            ),
-          ),
-          const VerticalDivider(color: Colors.grey, thickness: 0.3),
-          Expanded(
-            flex: 2,
-            child: Column(
-              children: [
-                RoutePathControl(streamFolder: streamFolder),
-                Expanded(
-                  child: ListFolderTree(
-                    initRoute: HomePage.root.first,
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
     );
   }
 }
