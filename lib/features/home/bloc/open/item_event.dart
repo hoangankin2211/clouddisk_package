@@ -9,8 +9,11 @@ class OpenFolder extends ItemEvent {
   String id;
   int start;
   List<Item> currentList;
-  OpenFolder(
-      {required this.id, required this.start, required this.currentList});
+  OpenFolder({
+    required this.id,
+    required this.start,
+    required this.currentList,
+  });
 }
 
 class OpenMainFolderEvent extends ItemEvent {}

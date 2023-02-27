@@ -1,13 +1,21 @@
 import '../../../../model/item.dart';
 
-abstract class ItemState {}
+abstract class ItemState {
+  final String currentFolder;
 
-class InitState extends ItemState {}
+  ItemState(this.currentFolder);
+}
 
-class LoadingItem extends ItemState {}
+class InitState extends ItemState {
+  InitState(super.currentFolder);
+}
+
+class LoadingItem extends ItemState {
+  LoadingItem(super.currentFolder);
+}
 
 class LoadListItemState extends ItemState {
   bool inFolderEmpty;
   List<Item> listItems;
-  LoadListItemState(this.listItems, this.inFolderEmpty);
+  LoadListItemState(this.listItems, this.inFolderEmpty, super.currentFolder);
 }

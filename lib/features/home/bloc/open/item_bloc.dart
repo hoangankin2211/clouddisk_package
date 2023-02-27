@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../constant/api_info.dart';
+import '../../../../api/api_info.dart';
 import '../../../../model/item.dart';
 import '../../../../utils/dio_service.dart';
 import '../../../../utils/shared_preferences.dart';
@@ -10,7 +10,7 @@ import 'item_event.dart';
 import 'item_state.dart';
 
 class ItemBloc extends Bloc<ItemEvent, ItemState> {
-  ItemBloc() : super(InitState()) {
+  ItemBloc() : super(InitState("/")) {
     on<OpenFolder>(openNormalFolderHandle);
     on<OpenMainFolderEvent>(openMainFolderHandle);
     on<SortItemEvent>(sortItemEventHandle);
@@ -19,7 +19,7 @@ class ItemBloc extends Bloc<ItemEvent, ItemState> {
   void openMainFolderHandle(
       OpenMainFolderEvent event, Emitter<ItemState> emit) async {
     try {
-      emit(LoadingItem());
+      emit(LoadingItem("/"));
       final response = await DioService.get(
         ApiPath.apiMainFolder,
         queryParameters: ApiParam.mainFolderParam,
@@ -33,7 +33,7 @@ class ItemBloc extends Bloc<ItemEvent, ItemState> {
           Map<String, dynamic> extractData = element;
           mainFolders.add(Item.fromJson(extractData));
         }
-        emit(LoadListItemState(mainFolders, true));
+        emit(LoadListItemState(mainFolders, false, "/"));
       }
     } catch (e) {
       print(e.toString());
@@ -43,6 +43,7 @@ class ItemBloc extends Bloc<ItemEvent, ItemState> {
 
   void openNormalFolderHandle(OpenFolder event, Emitter<ItemState> emit) async {
     try {
+      if (event.start == 0) emit(LoadingItem(event.id));
       final Map<String, dynamic> params = {};
       String? sortType =
           SharedPreferencesUtils.sharedPreferences!.getString("SortType");
@@ -61,15 +62,16 @@ class ItemBloc extends Bloc<ItemEvent, ItemState> {
 
         List<dynamic> data = jsonDecode(response)["files"];
         if (data.isEmpty) {
-          print(data);
-          return emit(LoadListItemState(List.of(event.currentList), true));
+          return emit(
+            LoadListItemState(List.of(event.currentList), true, event.id),
+          );
         }
         for (var element in data) {
           Map<String, dynamic> extractData = element;
           listFolder.add(Item.fromJson(extractData));
         }
         emit(LoadListItemState(
-            List.of(event.currentList)..addAll(listFolder), false));
+            List.of(event.currentList)..addAll(listFolder), false, event.id));
       }
     } catch (e) {
       print(e.toString());
@@ -79,7 +81,7 @@ class ItemBloc extends Bloc<ItemEvent, ItemState> {
 
   void sortItemEventHandle(SortItemEvent event, Emitter<ItemState> emit) async {
     try {
-      emit(LoadingItem());
+      emit(LoadingItem(event.folderId));
       final Map<String, dynamic> params = {};
       ApiParam.childFolderParam
           .forEach((key, value) => params.addAll({key: value}));
@@ -96,13 +98,12 @@ class ItemBloc extends Bloc<ItemEvent, ItemState> {
 
       if (response != null) {
         List<Item> listFolder = [];
-        print(jsonDecode(response));
         List<dynamic> data = jsonDecode(response)["files"];
         for (var element in data) {
           Map<String, dynamic> extractData = element;
           listFolder.add(Item.fromJson(extractData));
         }
-        emit(LoadListItemState(listFolder, data.isEmpty));
+        emit(LoadListItemState(listFolder, data.isEmpty, event.folderId));
       }
     } catch (e) {
       print(e.toString());

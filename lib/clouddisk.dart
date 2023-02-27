@@ -32,7 +32,6 @@ class _MyCloudDiskAppState extends State<MyCloudDiskApp> {
 
   @override
   void initState() {
-    RootPath.setRoot(widget.root);
     super.initState();
   }
 
@@ -47,6 +46,13 @@ class _MyCloudDiskAppState extends State<MyCloudDiskApp> {
         (ModalRoute.of(context)?.settings.arguments as Map)["languageCode"];
     themeMode =
         (ModalRoute.of(context)?.settings.arguments as Map)["themeMode"];
+    RootPath.setRoot(
+      hmail_key: hmail_key,
+      languageCode: languageCode,
+      root: widget.root,
+      session: session,
+      themeMode: themeMode,
+    );
     SharedPreferencesUtils.initSharedPreferencesInstance();
   }
 
@@ -124,7 +130,7 @@ class _AppState extends State<App> {
             "/loaing_screen": (context) => const Material(
                 child: Center(child: CircularProgressIndicator())),
             "/failure_screen": (context) =>
-                FailureScreen(rootRouteName: RootPath.root),
+                FailureScreen(rootRouteName: RootPath.root ?? "/"),
             "/splash_screen": (context) => const SplashScreen()
           },
           builder: (context, child) {
@@ -203,5 +209,9 @@ extension DarkMode on BuildContext {
   bool get isDarkMode {
     final brightness = Theme.of(this).brightness;
     return brightness == Brightness.dark;
+  }
+
+  bool get isLargeScreen {
+    return MediaQuery.of(this).size.shortestSide >= 600 ? true : false;
   }
 }
