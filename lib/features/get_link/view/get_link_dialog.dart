@@ -49,8 +49,11 @@ class _GetlinkDialogState extends State<GetlinkDialog> {
                                   onTap: () =>
                                       OpenUrlService.openUrl(link.link),
                                   leading: const CircleAvatar(
-                                      child: Icon(Icons.file_copy,
-                                          color: Colors.white)),
+                                    child: Icon(
+                                      Icons.file_copy,
+                                      color: Colors.white,
+                                    ),
+                                  ),
                                   title: Text(
                                     link.name,
                                     style:
@@ -71,8 +74,21 @@ class _GetlinkDialogState extends State<GetlinkDialog> {
                             onPressed: () {
                               Navigator.of(context).popUntil((route) {
                                 if (route.settings.name == RootPath.root) {
-                                  (route.settings.arguments as Map)["result"] =
-                                      state.linkResponse;
+                                  Map<String, dynamic> result = {
+                                    "files": state.linkResponse
+                                        .map(
+                                          (e) => {
+                                            "link": e.link,
+                                            "name": e.name,
+                                            "size": e.size,
+                                          },
+                                        )
+                                        .toList(),
+                                    "expiredDate": "165456165165",
+                                    "downloadLimit": state.downCount.toString(),
+                                  };
+                                  (route.settings.arguments as Map)["files"] =
+                                      result;
                                   return true;
                                 }
                                 return false;

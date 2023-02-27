@@ -25,10 +25,10 @@ class MyCloudDiskApp extends StatefulWidget {
 }
 
 class _MyCloudDiskAppState extends State<MyCloudDiskApp> {
-  late final String? hmail_key;
-  late final String? session;
-  late final String? languageCode;
-  late final ThemeMode? themeMode;
+  late final String? _hmail_key;
+  late final String? _session;
+  late final String? _languageCode;
+  late final ThemeMode? _themeMode;
 
   @override
   void initState() {
@@ -39,19 +39,19 @@ class _MyCloudDiskAppState extends State<MyCloudDiskApp> {
   void didChangeDependencies() async {
     super.didChangeDependencies();
     print("ModalRoute: ${(ModalRoute.of(context)?.settings.arguments as Map)}");
-    hmail_key =
+    _hmail_key =
         (ModalRoute.of(context)?.settings.arguments as Map)["hmail_key"];
-    session = (ModalRoute.of(context)?.settings.arguments as Map)["session"];
-    languageCode =
+    _session = (ModalRoute.of(context)?.settings.arguments as Map)["session"];
+    _languageCode =
         (ModalRoute.of(context)?.settings.arguments as Map)["languageCode"];
-    themeMode =
+    _themeMode =
         (ModalRoute.of(context)?.settings.arguments as Map)["themeMode"];
     RootPath.setRoot(
-      hmail_key: hmail_key,
-      languageCode: languageCode,
+      hmail_key: _hmail_key,
+      languageCode: _languageCode,
       root: widget.root,
-      session: session,
-      themeMode: themeMode,
+      session: _session,
+      themeMode: _themeMode,
     );
     SharedPreferencesUtils.initSharedPreferencesInstance();
   }
@@ -61,12 +61,12 @@ class _MyCloudDiskAppState extends State<MyCloudDiskApp> {
     return MultiBlocProvider(
       providers: [
         BlocProvider(
-            create: (_) => AuthBloc(hmail_key: hmail_key, session: session)),
+            create: (_) => AuthBloc(hmail_key: _hmail_key, session: _session)),
         BlocProvider(
             create: (context) =>
-                ThemeBloc(mode: themeMode ?? ThemeMode.system)),
+                ThemeBloc(mode: _themeMode ?? ThemeMode.system)),
         BlocProvider(
-            create: (_) => LocaleBloc(languageCode: languageCode ?? "ko")),
+            create: (_) => LocaleBloc(languageCode: _languageCode ?? "ko")),
       ],
       child: const App(),
     );

@@ -11,9 +11,14 @@ class InitGetlinkState extends GetlinkState {
 class GettingShareLink extends GetlinkState {}
 
 class ExposeLinkState extends GetlinkState {
-  List<GetLinkResponse> linkResponse;
-
-  ExposeLinkState(this.linkResponse);
+  final List<GetLinkResponse> linkResponse;
+  final int downCount;
+  final DateTime selectedDateTime;
+  ExposeLinkState({
+    required this.linkResponse,
+    required this.downCount,
+    required this.selectedDateTime,
+  });
 }
 
 class SelectTimeState extends GetlinkState {

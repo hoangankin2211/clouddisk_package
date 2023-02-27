@@ -45,7 +45,11 @@ class GetlinkBloc extends Bloc<GetlinkEvent, GetlinkState> {
         for (var element in listData) {
           data.add(GetLinkResponse.fromJson(element));
         }
-        emit(ExposeLinkState(data));
+        emit(ExposeLinkState(
+          linkResponse: data,
+          downCount: event.downCount,
+          selectedDateTime: event.selectedDateTime,
+        ));
       }
     } catch (e) {
       print(e.toString());
