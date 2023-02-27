@@ -36,10 +36,7 @@ class GetlinkBloc extends Bloc<GetlinkEvent, GetlinkState> {
         "mode": "set",
         "files": "[$files]",
       };
-      final response = await DioService.post(
-        "/cloud/api/link.php",
-        data: data,
-      );
+      final response = await DioService.post("/cloud/api/link.php", data: data);
 
       if (response != null) {
         print(response);
